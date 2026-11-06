@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>dung.fun — The #2 DEX in DeFi</title>
+<meta name="description" content="The manure exchange. Coincidence of Dumps, farmhand solvers, fence-level MEV protection. A loving parody of CoW Swap."/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💩</text></svg>"/>
+<link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand" id="brand" title="plop?">
+    <span class="brand-mark" id="brandMark">💩</span>
+    <span class="brand-name">dung<b>.fun</b></span>
+  </div>
+  <nav class="nav" id="nav">
+    <button class="nav-link is-active" data-view="scoop">Scoop</button>
+    <button class="nav-link" data-view="farmhands">Farmhands<span class="nav-sub">solvers</span></button>
+    <button class="nav-link" data-view="fencetv">Fence TV<span class="nav-sub">mev</span></button>
+    <button class="nav-link" data-view="almanac">Almanac<span class="nav-sub">docs</span></button>
+    <button class="nav-link" data-tab="stash">Stash<span class="nav-sub">limit</span></button>
+    <button class="nav-link" data-tab="trickler">Trickler<span class="nav-sub">twap</span></button>
+    <button class="nav-link" data-tab="yield">Yield<span class="nav-sub">herd</span></button>
+  </nav>
+  <div class="topbar-right">
+    <button class="pill" id="netBtn">🌐 Ethereum</button>
+    <button class="pill" id="soundToggle" title="Farm sounds">🔊</button>
+    <button class="pill wallet-btn" id="walletBtn">Connect Wallet</button>
+  </div>
+</header>
+
+<main class="main">
+  <section class="view" id="view-scoop">
+    <div class="promo">
+      <p>🌾 <b>Coincidence of Dumps:</b> your pile matches another farmer's need — batch spreading earns everyone an extra scoop.</p>
+    </div>
+
+    <section class="card" aria-label="Scoop">
+      <div class="card-head">
+        <h1 class="card-title">Scoop</h1>
+        <div class="chips">
+          <span class="chip">⛽ Gasless</span>
+          <span class="chip chip-link" id="fenceChip" title="How the fence works">🪵 Fence-protected</span>
+          <span class="chip chip-link" id="farmChip" title="Meet the solvers">🧑‍🌾 Farmhand-solved</span>
+        </div>
+        <button class="gear" id="gearBtn" title="Spillage settings">⚙️</button>
+      </div>
+
+      <div class="settings hidden" id="settingsPanel">
+        <p class="settings-label">Spillage tolerance</p>
+        <div class="spill-row" id="spillRow">
+          <button class="spill" data-v="0.1">0.1%</button>
+          <button class="spill is-on" data-v="0.5">0.5%</button>
+          <button class="spill" data-v="1">1%</button>
+        </div>
+        <p class="settings-note">Cream off the top: 0% — the farmhands are paid from surplus.</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-top">
+          <span class="panel-label">Your pile</span>
+          <span class="panel-bal">Pile: <button class="bal-btn" id="sellBal" title="Scoop the whole pile">0</button></span>
+        </div>
+        <div class="panel-main">
+          <input id="sellInput" class="amount" inputmode="decimal" placeholder="0.0" autocomplete="off"/>
+          <button class="token-btn" id="sellTokenBtn"></button>
+        </div>
+      </div>
+
+      <div class="switch-row">
+        <button class="switch" id="switchBtn" title="Swap direction">⇅</button>
+      </div>
+
+      <div class="panel">
+        <div class="panel-top">
+          <span class="panel-label">Fresh bucket</span>
+          <span class="panel-bal">Hauled: <b id="buyBal">0</b></span>
+        </div>
+        <div class="panel-main">
+          <div class="amount amount-out" id="buyOut">0.0</div>
+          <button class="token-btn" id="buyTokenBtn"></button>
+        </div>
+      </div>
+
+      <button class="details-toggle hidden" id="detailsToggle">
+        <span>Haul details</span><span class="chev" id="detailsChev">▾</span>
+      </button>
+      <div class="details hidden" id="details"></div>
+
+      <button class="cta" id="ctaBtn">Connect Wallet to Scoop</button>
+
+      <p class="foot-note">Orders are carted off in batches. Farmhands compete to spread your pile at the best price — you keep the extra scoop.</p>
+
+      <div class="receipt hidden" id="receipt"></div>
+    </section>
+  </section>
+
+  <section class="view hidden" id="view-farmhands">
+    <div class="page-head">
+      <h1 class="page-title">🚜 Farmhand Arena</h1>
+      <p class="page-sub">Solvers compete to spread your pile at the best price. Winner takes the cream — you keep the extra scoop. Races run live, one per batch.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="stat-num" id="statLoads">13,337</span><span class="stat-label">loads hauled today</span></div>
+      <div class="stat"><span class="stat-num" id="statBatches">420</span><span class="stat-label">batches spread</span></div>
+      <div class="stat"><span class="stat-num" id="statScoops">1,204 kg</span><span class="stat-label">extra scoops served</span></div>
+      <div class="stat"><span class="stat-num" id="statFoxes">89</span><span class="stat-label">foxes zapped ⚡</span></div>
+    </div>
+
+    <section class="panel race-card">
+      <div class="race-head">
+        <h2 class="section-title">Live race — batch #<span id="raceBatchNum">421</span></h2>
+        <span class="race-status" id="raceStatus">spreading…</span>
+      </div>
+      <div class="track" id="track"></div>
+      <div class="race-winner hidden" id="raceWinner"></div>
+    </section>
+
+    <section class="panel board-card">
+      <h2 class="section-title">Season leaderboard</h2>
+      <div class="alm-wrap">
+        <table class="board">
+          <thead>
+            <tr><th>#</th><th>Farmhand</th><th>Batches won</th><th>Avg extra scoop</th><th>Hauls today</th></tr>
+          </thead>
+          <tbody id="boardBody"></tbody>
+        </table>
+      </div>
+      <p class="board-note">Rankings self-reported, as all good farming statistics are. Audited quarterly by Old MacDonald (E-I-E-I-O).</p>
+    </section>
+  </section>
+
+  <section class="view hidden" id="view-fencetv">
+    <div class="page-head">
+      <h1 class="page-title">⚡ Fence TV</h1>
+      <p class="page-sub">MEV protection, explained live by our electric fence. Broadcasting from the perimeter, 24/7.</p>
+    </div>
+
+    <div class="tv">
+      <div class="tv-antenna" aria-hidden="true"><span class="rod rod-l"></span><span class="rod rod-r"></span></div>
+      <div class="tv-screen">
+        <div class="scene scene-fence" id="sceneFence">
+          <div class="fence-pile" id="fencePile">
+            <span>💩</span><span>💩</span><span>💩</span>
+            <span class="fly-s f1">🪰</span>
+            <span class="fly-s f2">🪰</span>
+          </div>
+          <div class="fence" id="fenceLine" aria-hidden="true">
+            <span class="post" style="left:0"></span>
+            <span class="post" style="left:22px"></span>
+            <span class="post" style="left:44px"></span>
+            <span class="wire w1"></span>
+            <span class="wire w2"></span>
+          </div>
+          <div class="fox" id="foxEl">🦊</div>
+          <div class="zap-bolt hidden" id="zapBolt">⚡</div>
+          <div class="dizzy hidden" id="dizzyEl">💫</div>
+          <div class="tv-flash" id="tvFlash"></div>
+          <div class="scene-ground"></div>
+        </div>
+        <div class="scene scene-herd hidden" id="sceneHerd">
+          <div class="herd-gate" aria-hidden="true">
+            <span class="post" style="left:0"></span>
+            <span class="post" style="left:34px"></span>
+          </div>
+          <div class="herd-line" aria-hidden="true">
+            <span>🐖&nbsp;🐖&nbsp;🐐&nbsp;🐖&nbsp;🐐&nbsp;🐖&nbsp;🐐&nbsp;🐖&nbsp;</span>
+            <span>🐖&nbsp;🐖&nbsp;🐐&nbsp;🐖&nbsp;🐐&nbsp;🐖&nbsp;🐐&nbsp;🐖&nbsp;</span>
+          </div>
+          <div class="herd-truck">🚚</div>
+          <div class="scene-ground"></div>
+        </div>
+        <div class="scene scene-bars hidden" id="sceneBars">
+          <div class="bars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="standby">
+            <b>PLEASE STAND BY</b>
+            <span>spreading resumes shortly</span>
+          </div>
+          <div class="scene-ground"></div>
+        </div>
+        <div class="scanlines" aria-hidden="true"></div>
+        <div class="ticker" aria-hidden="true"><div class="ticker-inner" id="tickerInner"></div></div>
+        <div class="on-air" aria-hidden="true">● ON AIR</div>
+      </div>
+      <div class="tv-controls">
+        <button class="tv-ch is-on" data-ch="fence">CH 1 · Electric Fence</button>
+        <button class="tv-ch" data-ch="herd">CH 2 · Herding Day</button>
+        <button class="tv-ch" data-ch="bars">CH 3 · Test Signal</button>
+        <span class="tv-knobs" aria-hidden="true"><span class="knob"></span><span class="knob"></span></span>
+      </div>
+    </div>
+    <p class="tv-fine">Fence voltage: 10,000 V of pure MEV protection. A fox is slightly harmed roughly every four seconds. He's fine. Sound follows the 🔊 in the header. Brought to you by the Council for Electric Fencing.</p>
+  </section>
+
+  <section class="view hidden" id="view-almanac">
+    <div class="page-head">
+      <h1 class="page-title">📜 The Almanac</h1>
+      <p class="page-sub">Field notes and error codes. Every error is dev-readable — the jokes are load-bearing.</p>
+    </div>
+
+    <div class="panel sim-card">
+      <p class="sim-copy">Curious how the farm fails? Pull the lever.</p>
+      <button class="r-btn" id="simBtn">Simulate a failure 🎲</button>
+      <div class="sim-out hidden" id="simOut"></div>
+    </div>
+
+    <h2 class="alm-h">Barn codes — the classics</h2>
+    <div class="alm-wrap">
+      <table class="alm" id="almHttp"></table>
+    </div>
+
+    <h2 class="alm-h">Haul-time codes — order book specials</h2>
+    <div class="alm-wrap">
+      <table class="alm" id="almOrder"></table>
+    </div>
+
+    <p class="alm-note">When in doubt: turn it off and on again, then re-plant. Deep wisdom lives in The Barn (code).</p>
+  </section>
+
+  <footer class="foot">
+    <p class="foot-links">
+      <a href="#" data-nav="almanac">Almanac</a>
+      <a href="#" data-toast="The Barn is closed for milking.">The Barn (code)</a>
+      <a href="#" data-toast="The Smell-o-scope is out for calibration.">Smell-o-scope</a>
+      <a href="#" data-toast="DungDAO quorum: 3 chickens and a goat.">DungDAO</a>
+    </p>
+    <p class="foot-fine">dung.fun is a loving parody of CoW Swap. Not affiliated. No actual manure was exchanged. 🌱 100% organic pixels — certified 🐄→💩.</p>
+  </footer>
+</main>
+
+<div class="overlay hidden" id="haulOverlay">
+  <div class="stage-wrap" id="stageWrap">
+    <div class="stage" id="stage">
+      <div class="batch-note" id="batchNote">Batch #420 — spreading…</div>
+      <div class="ground"></div>
+      <div class="bucket" id="bucketSell">
+        <div class="bucket-body"><div class="bucket-fill" id="fillSell"></div></div>
+        <div class="bucket-rim"></div>
+        <div class="bucket-label" id="labelSell">🌾 HAY</div>
+      </div>
+      <div class="bucket" id="bucketBuy">
+        <div class="bucket-body"><div class="bucket-fill" id="fillBuy"></div></div>
+        <div class="bucket-rim"></div>
+        <div class="bucket-label" id="labelBuy">💩 DUNG</div>
+        <div class="fall-host" id="fallHost"></div>
+        <div class="poof" id="poof">💨</div>
+      </div>
+      <div class="shovel" id="shovel">
+        <svg viewBox="0 0 46 140" width="46" height="140" aria-hidden="true">
+          <rect x="20" y="4" width="6" height="84" rx="3" fill="#8a5a2b"/>
+          <rect x="17" y="2" width="12" height="8" rx="3" fill="#6d4522"/>
+          <rect x="15" y="84" width="16" height="6" rx="2" fill="#4d4d4d"/>
+          <path d="M6 90 H40 L36 122 Q23 134 10 122 Z" fill="#aeb6bf"/>
+          <path d="M6 90 H40 L39 97 H7 Z" fill="#8d97a1"/>
+        </svg>
+        <div class="cargo cargo-1"></div>
+        <div class="cargo cargo-2"></div>
+        <div class="cargo cargo-3"></div>
+      </div>
+      <div class="fly fly-1">🪰</div>
+      <div class="fly fly-2">🪰</div>
+    </div>
+  </div>
+</div>
+
+<div class="token-menu hidden" id="tokenMenu"></div>
+<div class="toast hidden" id="toast"></div>
+<div class="poop-rain" id="poopRain"></div>
+
+<script src="./app.js"></script>
+</body>
+</html>
