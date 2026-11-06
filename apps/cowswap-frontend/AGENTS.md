@@ -90,6 +90,15 @@ Root rules: [`../../AGENTS.md`](../../AGENTS.md) (global safety, workflow, and v
 - `MUST NOT` introduce a size 1px off an existing token (especially ≥16px) or a one-off size used in a single component. Add a real new step only via `FONT_SIZING` + `UI.FONT_SIZE_*` + `ThemeColorVars`.
 - Full rule: [`docs/FONT_CONVENTIONS.md`](../../docs/FONT_CONVENTIONS.md). Do not migrate existing `Font.*` / raw sizes unless already editing that style.
 
+## Brand variant: dung.fun
+
+- dung.fun is a build-time brand variant of this app, enabled by `REACT_APP_BRAND=dungfun` (inlined by `vite.config.mts` `define`; run via root scripts `start:dungfun` / `build:dungfun`).
+- All dung code lives in `src/modules/dungfun/` and `src/common/brand/`, plus small guarded diffs at these touch points: `vite.config.mts`, `src/cow-react/index.tsx` (analytics noop), `src/lib/localeMessages.ts`, `src/legacy/state/orders/middleware/soundMiddleware.ts` (moo disabled), `src/modules/application/containers/App/RoutesApp.tsx`, `AppContainer.container.tsx`, `App/styled.ts`, `AppMenu/index.tsx`, `common/hooks/useMenuItems.ts`, `theme/getCowswapTheme.ts`, `theme/ThemeConfigUpdater.ts`.
+- MUST use the inline comparison `process.env['REACT_APP_BRAND'] === 'dungfun'` (not a helper function) wherever a module import must be dead-code-eliminated from cowswap builds (lazy imports, dynamic imports); helpers from `common/brand/brand.constants` are fine for runtime-only logic.
+- MUST NOT edit `.po` catalogs for brand copy: brand string overrides live exclusively in `src/common/brand/dungStrings.ts` and are merged at catalog load.
+- dung.fun forces dark mode; do not add light-theme dung palettes.
+- dung builds disable analytics, the service worker, and PWA via env/config in the build scripts and `vite.config.mts`; do not re-enable them for this brand.
+
 ## State management notes
 - Prefer managing side effects with `jotai-effect` rather than updaters.
 - Use `atom.onMount` to subscribe to external sources when needed.

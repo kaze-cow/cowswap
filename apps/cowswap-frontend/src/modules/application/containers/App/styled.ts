@@ -15,6 +15,8 @@ import { CowSwapTheme, Media, UI } from '@cowprotocol/ui'
 import * as CSS from 'csstype'
 import styled from 'styled-components/macro'
 
+import { isDungfunBrand } from 'common/brand/brand.constants'
+
 import type { PageBackgroundVariant } from '../../contexts/PageBackgroundContext'
 
 export function isChristmasTheme(theme?: CowSwapTheme): boolean {
@@ -85,6 +87,11 @@ export const BodyWrapper = styled.div<{
     if (theme.isWidget) {
       return 'transparent'
     } else {
+      if (isDungfunBrand()) {
+        // the dung.fun background is the fixed barnyard scene layer mounted in AppContainer
+        return 'transparent'
+      }
+
       const backgroundColor = theme.darkMode ? '#0E0F2D' : `var(${UI.COLOR_BLUE_300_PRIMARY})`
       let backgroundImage
 

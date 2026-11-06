@@ -67,7 +67,7 @@ export const soundMiddleware: Middleware<Record<string, unknown>, AppState> = (s
     cowSound = _getUpdatedOrderSound(action.payload)
   }
 
-  if (cowSound) {
+  if (cowSound && process.env['REACT_APP_BRAND'] !== 'dungfun') {
     cowSound.play().catch((e) => {
       console.error('🐮 Moooooo sound cannot be played', e)
     })

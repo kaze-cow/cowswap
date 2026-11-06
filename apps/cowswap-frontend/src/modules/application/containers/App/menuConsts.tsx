@@ -12,11 +12,12 @@ import { Version } from 'legacy/components/Version'
 import { getProxyAccountUrl } from 'modules/accountProxy'
 import { FortuneWidget } from 'modules/fortune'
 
+import { isDungfunBrand } from 'common/brand/brand.constants'
 import { Routes } from 'common/constants/routes'
 
 import { getSolversExplorerUrl } from './menuConsts.utils'
 
-export const PRODUCT_VARIANT = ProductVariant.CowSwap
+export const PRODUCT_VARIANT = isDungfunBrand() ? ProductVariant.DungFun : ProductVariant.CowSwap
 
 type UntranslatedMenuItem = {
   label: MessageDescriptor
@@ -137,15 +138,21 @@ const MORE_ITEM = (isSolversEnabled: boolean): UntranslatedMenuItem => ({
 })
 
 export const NAV_ITEMS = (chainId: SupportedChainId, isSolversEnabled: boolean): MenuItem[] => {
+  const isDungfun = isDungfunBrand()
   const _ACCOUNT_ITEM = ACCOUNT_ITEM(chainId)
   const accountItem: MenuItem = {
     label: i18n._(_ACCOUNT_ITEM.label),
-    children: _ACCOUNT_ITEM.children.map(({ href, label, badge, badgeType }) => ({
-      href,
-      label: i18n._(label),
-      badge: badge ? i18n._(badge) : undefined,
-      badgeType,
-    })),
+    children: _ACCOUNT_ITEM.children
+      .filter(
+        ({ href }) =>
+          !isDungfun || (href !== Routes.ACCOUNT_AFFILIATE_PARTNER && href !== Routes.ACCOUNT_AFFILIATE_TRADER),
+      )
+      .map(({ href, label, badge, badgeType }) => ({
+        href,
+        label: i18n._(label),
+        badge: badge ? i18n._(badge) : undefined,
+        badgeType,
+      })),
   }
 
   const learnItem: MenuItem = {
@@ -170,14 +177,13 @@ export const NAV_ITEMS = (chainId: SupportedChainId, isSolversEnabled: boolean):
   const moreItemConfig = MORE_ITEM(isSolversEnabled)
   const moreItem: MenuItem = {
     label: i18n._(moreItemConfig.label),
-    children: moreItemConfig.children.map(({ href, label, external }) => ({
+    children: moreItemConfig.children.map(({ href, label }) => ({
       href,
       label: i18n._(label),
-      external,
     })),
   }
 
-  return [accountItem, learnItem, moreItem]
+  return isDungfun ? [accountItem] : [accountItem, learnItem, moreItem]
 }
 
 export const ADDITIONAL_FOOTER_CONTENT = (

@@ -9,6 +9,7 @@ import { useSwitchNetwork, useWalletInfo } from '@cowprotocol/wallet'
 
 import { useAppKitProvider } from '@reown/appkit/react'
 
+import { isDungfunBrand } from 'common/brand/brand.constants'
 import { useOnSelectNetwork } from 'common/hooks/useOnSelectNetwork'
 import { TradeType, useTradeNavigate, useTradeTypeInfoFromUrl } from 'common/modules/tradeNavigation'
 
@@ -22,6 +23,8 @@ import { useTradeState } from '../useTradeState'
 
 const INITIAL_CHAIN_ID_FROM_URL = getRawCurrentChainIdFromUrl()
 const EMPTY_TOKEN_ID = '_'
+
+const DEFAULT_CHAIN_ID = isDungfunBrand() ? SupportedChainId.SOLANA : SupportedChainId.MAINNET
 
 // TODO: Break down this large function into smaller functions
 // eslint-disable-next-line max-lines-per-function
@@ -57,7 +60,7 @@ export function useSetupTradeState(enableSellEqBuy = false): void {
   const availableChains = useAvailableChains()
   const prevTradeStateFromUrl = usePrevious(tradeStateFromUrl)
 
-  const currentChainId = !urlChainId ? prevProviderChainId || providerChainId || SupportedChainId.MAINNET : urlChainId
+  const currentChainId = !urlChainId ? prevProviderChainId || providerChainId || DEFAULT_CHAIN_ID : urlChainId
 
   const isAlternativeModalVisible = useIsAlternativeOrderModalVisible()
   const isLimitOrderTrade = tradeTypeInfo?.tradeType === TradeType.LIMIT_ORDER
@@ -98,7 +101,7 @@ export function useSetupTradeState(enableSellEqBuy = false): void {
       currentProviderChainId: SupportedChainId | null,
     ): Promise<void> => {
       await tradeNavigate(chainId, tradeState)
-      await switchNetworkInWallet(chainId || SupportedChainId.MAINNET, currentProviderChainId)
+      await switchNetworkInWallet(chainId || DEFAULT_CHAIN_ID, currentProviderChainId)
     },
     [tradeNavigate, switchNetworkInWallet],
   )
@@ -172,7 +175,7 @@ export function useSetupTradeState(enableSellEqBuy = false): void {
     }
 
     if (isUrlChainUnavailable) {
-      const fallbackChainId = availableChains.includes(currentChainId) ? currentChainId : SupportedChainId.MAINNET
+      const fallbackChainId = availableChains.includes(currentChainId) ? currentChainId : DEFAULT_CHAIN_ID
 
       navigateAndSwitchNetwork(fallbackChainId, getDefaultTradeRawState(fallbackChainId), prevProviderChainId)
       console.debug('[TRADE STATE]', 'Url contains unavailable chainId, resetting', rawUrlChainId)

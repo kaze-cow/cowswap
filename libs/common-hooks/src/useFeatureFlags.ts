@@ -33,6 +33,11 @@ const WIDGET_FLAG_OVERRIDES: Partial<FeatureFlags> = {
   isAlphaNetworksOptionVisible: false,
 }
 
+// dung.fun runs on Solana by default, and its builds have no LaunchDarkly key configured
+const DUNGFUN_FLAG_OVERRIDES: Partial<FeatureFlags> = {
+  isSolanaEnabled: true,
+}
+
 export function useFeatureFlags(): FeatureFlags {
   const flags = useFlags<FeatureFlags>()
 
@@ -48,9 +53,14 @@ export function useFeatureFlags(): FeatureFlags {
 
   const resolvedFlags = e2eOverrideFlags ?? flags
 
-  return useMemo(
-    () => (isInjectedWidget() ? { ...resolvedFlags, ...WIDGET_FLAG_OVERRIDES } : resolvedFlags),
-    [resolvedFlags],
-  )
-  // return { ...defaults, ...flags }
+  return useMemo(() => {
+    let result = resolvedFlags
+    if (isInjectedWidget()) {
+      result = { ...result, ...WIDGET_FLAG_OVERRIDES }
+    }
+    if (process.env['REACT_APP_BRAND'] === 'dungfun') {
+      result = { ...result, ...DUNGFUN_FLAG_OVERRIDES }
+    }
+    return result
+  }, [resolvedFlags])
 }

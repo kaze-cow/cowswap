@@ -9,6 +9,7 @@ import { Outlet, useLocation, matchPath } from 'react-router'
 import { AffiliateFeedbackButton } from 'modules/affiliate'
 import { Content, PageTitle, Title } from 'modules/application'
 
+import { isDungfunBrand } from 'common/brand/brand.constants'
 import { Routes as RoutesEnum } from 'common/constants/routes'
 
 import { AccountMenu } from './Menu'
@@ -69,7 +70,7 @@ function TitleWithFeedback({ id, name }: TitleWithFeedbackProps): ReactNode {
   return (
     <TitleRow>
       <Title id={id}>{name}</Title>
-      <AffiliateFeedbackButton />
+      {isDungfunBrand() ? null : <AffiliateFeedbackButton />}
     </TitleRow>
   )
 }

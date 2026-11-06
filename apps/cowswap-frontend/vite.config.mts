@@ -26,10 +26,47 @@ import { robotsPlugin } from '../../tools/vite-plugins/robotsPlugin'
 
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { TemplateType } from 'rollup-plugin-visualizer/dist/plugin/template-types'
-import type { PluginOption } from 'vite'
+import type { Plugin, PluginOption } from 'vite'
 
 // Trezor getAccountsAsync() requires crypto and stream (the module is lazy-loaded)
 const nodeDepsToInclude = ['crypto', 'stream']
+
+const brand = process.env.REACT_APP_BRAND || 'cowswap'
+const isDungfun = brand === 'dungfun'
+
+const DUNG_TITLE = 'DUNG.FUN | THE #2 DEX IN DEFI'
+const DUNG_DESCRIPTION =
+  'The manure exchange. Coincidence of Dumps, farmhand solvers, fence-level MEV protection. Real trading powered by CoW Protocol — a loving parody.'
+
+function dungfunHtmlPlugin(): Plugin {
+  return {
+    name: 'dungfun-html-brand',
+    transformIndexHtml(html: string): string {
+      return html
+        .replace(/<title>.*?<\/title>/, `<title>${DUNG_TITLE}</title>`)
+        .replace(
+          /<meta name="description"\s+content="[^"]*" \/>/,
+          `<meta name="description" content="${DUNG_DESCRIPTION}" />`,
+        )
+        .replace(
+          /<meta property="og:title" content="[^"]*" \/>/,
+          `<meta property="og:title" content="${DUNG_TITLE}" />`,
+        )
+        .replace(
+          /<meta property="og:description"\s+content="[^"]*" \/>/,
+          `<meta property="og:description" content="${DUNG_DESCRIPTION}" />`,
+        )
+        .replace(
+          /<meta name="twitter:title" content="[^"]*" \/>/,
+          `<meta name="twitter:title" content="${DUNG_TITLE}" />`,
+        )
+        .replace(/<link rel="apple-touch-icon"[^>]*>/, '<link rel="apple-touch-icon" href="/brand/favicon.svg" />')
+        .replace(/<link rel="icon"[^>]*>\s*/g, '<link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />\n  ')
+        .replace(/<link rel="manifest"[^>]*>\s*/, '')
+        .replace(/<meta name="theme-color" content="[^"]*" \/>/, '<meta name="theme-color" content="#0f0904" />')
+    },
+  }
+}
 
 const analyzeBundle = process.env.ANALYZE_BUNDLE === 'true'
 const analyzeBundleTemplate: TemplateType = (process.env.ANALYZE_BUNDLE_TEMPLATE as TemplateType) || 'treemap' //  "sunburst" | "treemap" | "network" | "raw-data" | "list";
@@ -95,19 +132,24 @@ export default defineConfig(({ mode, isPreview }) => {
       cwd: 'apps/cowswap-frontend',
     }),
     svgr(),
-    VitePWA({
-      injectRegister: null,
-      strategies: 'injectManifest',
-      srcDir: 'src',
-      filename: 'service-worker.ts',
-      minify: true,
-      injectManifest: {
-        // Preview build currently emits a large main chunk.
-        // If this value is smaller, pnpm preview will fail to start and Playwright will hang in CI and eventually timeout.
-        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10 MiB
-        globPatterns: ['**/*.{js,css,html,png,jpg,svg,json,woff,woff2,md}'],
-      },
-    }),
+    // dung.fun is a separate deployment without PWA/offline caching
+    ...(isDungfun
+      ? [dungfunHtmlPlugin()]
+      : [
+          VitePWA({
+            injectRegister: null,
+            strategies: 'injectManifest',
+            srcDir: 'src',
+            filename: 'service-worker.ts',
+            minify: true,
+            injectManifest: {
+              // Preview build currently emits a large main chunk.
+              // If this value is smaller, pnpm preview will fail to start and Playwright will hang in CI and eventually timeout.
+              maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10 MiB
+              globPatterns: ['**/*.{js,css,html,png,jpg,svg,json,woff,woff2,md}'],
+            },
+          }),
+        ]),
     robotsPlugin({
       robotsDir: 'robots',
       publicPath: path.resolve(__dirname, './public'),
@@ -171,6 +213,7 @@ export default defineConfig(({ mode, isPreview }) => {
     base: './',
     define: {
       ...getReactProcessEnv(mode),
+      'process.env.REACT_APP_BRAND': JSON.stringify(brand),
       'process.env.REACT_APP_GIT_COMMIT_HASH': JSON.stringify(gitBuildInfo.commitHash),
       'process.env.REACT_APP_GIT_COMMIT_DATE': JSON.stringify(gitBuildInfo.commitDate),
       'process.env.REACT_APP_GIT_RELEASE_TAG': JSON.stringify(gitBuildInfo.releaseTag),
@@ -181,7 +224,7 @@ export default defineConfig(({ mode, isPreview }) => {
     cacheDir: '../../node_modules/.vite/cowswap-frontend',
 
     server: {
-      port: 3000,
+      port: isDungfun ? 4210 : 3000,
       host: 'localhost',
       fs: {
         allow: [
@@ -206,7 +249,7 @@ export default defineConfig(({ mode, isPreview }) => {
     },
 
     preview: {
-      port: 3000,
+      port: isDungfun ? 4210 : 3000,
       host: 'localhost',
     },
 

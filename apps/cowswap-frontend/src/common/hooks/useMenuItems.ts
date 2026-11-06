@@ -13,6 +13,7 @@ import {
   IMenuItem,
   I18nIMenuItem,
   RWA_MENU_ITEM,
+  Routes,
   YIELD_MENU_ITEM,
 } from '../constants/routes'
 
@@ -36,7 +37,11 @@ export function useMenuItems(): IMenuItem[] {
     [i18n],
   )
 
-  const items: IMenuItem[] = MENU_ITEMS.map((item) => extractMenuItem(item))
+  const baseItems =
+    process.env['REACT_APP_BRAND'] === 'dungfun'
+      ? MENU_ITEMS.filter((item) => item.route !== Routes.ADVANCED_ORDERS)
+      : MENU_ITEMS
+  const items: IMenuItem[] = baseItems.map((item) => extractMenuItem(item))
 
   if (isHooksEnabled) {
     items.push(extractMenuItem(HOOKS_STORE_MENU_ITEM))

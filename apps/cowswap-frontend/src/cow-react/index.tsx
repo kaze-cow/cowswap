@@ -37,13 +37,17 @@ import {
 } from 'modules/application'
 import { installRestrictedAddressesGuard } from 'modules/restrictedAddresses'
 
+import { isDungfunBrand } from 'common/brand/brand.constants'
 import { hashHistory } from 'common/constants/routes'
 import { loadActiveLocaleMessages } from 'lib/localeMessages'
 
 import { APP_HEADER_ELEMENT_ID } from '../common/constants/common'
 import { WalletUnsupportedNetworkBanner } from '../common/containers/WalletUnsupportedNetworkBanner'
 
-const cowAnalytics = isInjectedWidget() || window.__COWSWAP_E2E__ ? createNoopCowAnalytics() : initGtm()
+if (isDungfunBrand()) void import('common/brand/dungFonts')
+
+const cowAnalytics =
+  isInjectedWidget() || window.__COWSWAP_E2E__ || isDungfunBrand() ? createNoopCowAnalytics() : initGtm()
 const helmetContext = {}
 
 const queryClient = new QueryClient({

@@ -16,6 +16,7 @@ import { useDarkModeManager, useUserLocaleManager } from 'legacy/state/user/hook
 
 import { useGetTradeUrlParams } from 'modules/trade'
 
+import { isDungfunBrand } from 'common/brand/brand.constants'
 import { APP_HEADER_ELEMENT_ID } from 'common/constants/common'
 import { Routes } from 'common/constants/routes'
 import { useIsInternationalizationEnabled } from 'common/hooks/featureFlags/useIsInternationalizationEnabled'
@@ -65,10 +66,14 @@ export function AppMenu({ children, customTheme: overriddenCustomTheme }: AppMen
 
   const settingsNavItems = useMemo(
     () => [
-      {
-        label: darkMode ? t`Light Mode` : t`Dark Mode`,
-        onClick: toggleDarkMode,
-      },
+      ...(isDungfunBrand()
+        ? []
+        : [
+            {
+              label: darkMode ? t`Light Mode` : t`Dark Mode`,
+              onClick: toggleDarkMode,
+            },
+          ]),
       ...(isAlphaNetworksOptionVisible
         ? [
             {

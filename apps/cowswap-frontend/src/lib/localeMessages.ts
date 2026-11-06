@@ -38,5 +38,12 @@ export async function loadActiveLocaleMessages(): Promise<Messages | undefined> 
 
 async function loadLocaleMessages(locale: SupportedLocale): Promise<Messages> {
   const catalog = await import(`../locales/${locale}.po`)
-  return catalog.messages
+  let messages = catalog.messages
+
+  if (process.env['REACT_APP_BRAND'] === 'dungfun') {
+    const { applyDungStringOverrides } = await import('common/brand/dungStrings')
+    messages = applyDungStringOverrides(messages)
+  }
+
+  return messages
 }

@@ -14,19 +14,26 @@ import { SideMenu } from 'legacy/components/SideMenu'
 
 import { getProxyAccountUrl } from 'modules/accountProxy'
 
+import { isDungfunBrand } from 'common/brand/brand.constants'
+import { Routes } from 'common/constants/routes'
+
 interface MenuItem {
   title: string | MessageDescriptor
   url: string
 }
 
 const ACCOUNT_MENU_LINKS = (chainId: SupportedChainId): MenuItem[] => {
-  return [
+  const links: MenuItem[] = [
     { title: msg`Overview`, url: '/account' },
-    { title: msg`Affiliate`, url: '/account/affiliate' },
-    { title: msg`My Rewards`, url: '/account/my-rewards' },
+    { title: msg`Affiliate`, url: Routes.ACCOUNT_AFFILIATE_PARTNER },
+    { title: msg`My Rewards`, url: Routes.ACCOUNT_AFFILIATE_TRADER },
     { title: msg`Tokens`, url: '/account/tokens' },
     ...(isEvmChain(chainId) ? [{ title: ACCOUNT_PROXY_LABEL, url: getProxyAccountUrl(chainId) }] : []),
   ]
+
+  return isDungfunBrand()
+    ? links.filter(({ url }) => url !== Routes.ACCOUNT_AFFILIATE_PARTNER && url !== Routes.ACCOUNT_AFFILIATE_TRADER)
+    : links
 }
 
 export function AccountMenu(): ReactNode {

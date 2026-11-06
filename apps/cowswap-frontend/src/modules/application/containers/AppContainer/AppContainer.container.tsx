@@ -1,4 +1,5 @@
 import { type CSSProperties, type ReactNode, useMemo, useState } from 'react'
+import { lazy, Suspense } from 'react'
 
 import { useAnalyticsReporter } from '@cowprotocol/analytics'
 import { useFeatureFlags, useMediaQuery } from '@cowprotocol/common-hooks'
@@ -34,6 +35,16 @@ import * as styledEl from '../App/styled'
 import { isChristmasTheme as isChristmasThemeHelper } from '../App/styled'
 import { AppMenu } from '../AppMenu'
 import { NetworkAndAccountControls } from '../NetworkAndAccountControls/NetworkAndAccountControls.container'
+
+// dung.fun brand layers (dead-code-eliminated in cowswap builds by the brand define)
+const DungfunBarnyardBackground =
+  process.env['REACT_APP_BRAND'] === 'dungfun'
+    ? lazy(() => import('modules/dungfun/barnyard').then((m) => ({ default: m.BarnyardBackground })))
+    : null
+const DungfunHaulOverlay =
+  process.env['REACT_APP_BRAND'] === 'dungfun'
+    ? lazy(() => import('modules/dungfun/haul').then((m) => ({ default: m.DungfunHaulOverlay })))
+    : null
 
 interface AppContainerProps {
   children: ReactNode | ReactNode[]
@@ -113,6 +124,12 @@ export function AppContainer({ children }: AppContainerProps): ReactNode {
 
         <AccountModal />
 
+        {DungfunBarnyardBackground ? (
+          <Suspense fallback={null}>
+            <DungfunBarnyardBackground />
+          </Suspense>
+        ) : null}
+
         <AppMenu customTheme={customTheme}>{networkAndAccountControls}</AppMenu>
 
         {isYieldEnabled && <CoWAmmBanner />}
@@ -129,6 +146,11 @@ export function AppContainer({ children }: AppContainerProps): ReactNode {
         </styledEl.BodyWrapper>
 
         <SnowfallOverlay show={showSnowfall} isMobile={isMobile} darkMode={darkMode} />
+        {DungfunHaulOverlay ? (
+          <Suspense fallback={null}>
+            <DungfunHaulOverlay />
+          </Suspense>
+        ) : null}
         <FooterSection
           show={!isInjectedWidgetMode}
           showCowSpeechBubble={shouldRenderCowSpeechBubble}

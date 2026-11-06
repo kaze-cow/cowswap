@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { isInjectedWidget } from '@cowprotocol/common-utils'
 import type { CowSwapWidgetPalette } from '@cowprotocol/widget-lib'
 
+import { isDungfunBrand } from 'common/brand/brand.constants'
+
 import { getCowswapTheme } from './getCowswapTheme'
 import { mapWidgetTheme } from './mapWidgetTheme'
 import { themeConfigAtom } from './themeConfigAtom'
@@ -14,7 +16,8 @@ import { useInjectedWidgetPalette } from '../modules/injectedWidget'
 export function ThemeConfigUpdater(): null {
   const setThemeConfig = useSetAtom(themeConfigAtom)
 
-  const darkMode = useIsDarkMode()
+  const userDarkMode = useIsDarkMode()
+  const darkMode = isDungfunBrand() || userDarkMode
   const injectedWidgetTheme = useInjectedWidgetPalette()
   const [widgetTheme, setWidgetTheme] = useState<Partial<CowSwapWidgetPalette> | undefined>(() =>
     injectedWidgetTheme && typeof injectedWidgetTheme === 'object' ? injectedWidgetTheme : undefined,

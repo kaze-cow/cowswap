@@ -40,6 +40,7 @@ import { eoaTwapOrdersEffectAtom, SafeTwapOrdersUpdater, twapAppziSurveyEffectAt
 import { UsdPricesUpdater } from 'modules/usdAmount'
 import { LpTokensWithBalancesUpdater, PoolsInfoUpdater, VampireAttackUpdater } from 'modules/yield'
 
+import { isDungfunBrand } from 'common/brand/brand.constants'
 import { TradeType } from 'common/modules/tradeNavigation'
 import { SurplusInvalidationListenerUpdater } from 'common/state/totalSurplusState'
 import { AnnouncementsUpdater } from 'common/updaters/AnnouncementsUpdater'
@@ -116,7 +117,7 @@ export function Updaters(): ReactNode {
       <AnnouncementsUpdater />
       <SurplusInvalidationListenerUpdater />
       <BridgingEnabledUpdater />
-      <FaviconAnimationUpdater />
+      {isDungfunBrand() ? null : <FaviconAnimationUpdater />}
       <ProviderNetworkSupportedUpdater />
       <TradeOrdersPermitUpdater />
 

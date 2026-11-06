@@ -1,12 +1,29 @@
 import { baseGlobalStyles, Media, ThemeColorVars, UI } from '@cowprotocol/ui'
 
-import { createGlobalStyle } from 'styled-components/macro'
+import { createGlobalStyle, css } from 'styled-components/macro'
 
 import { Z_INDEX } from './consts'
+
+const DUNG_GLOBAL_STYLES = css`
+  /* dung.fun brand: Comic Neue, everything lowercase except the logo wordmark */
+  :root {
+    ${UI.FONT_FAMILY_PRIMARY}: 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', system-ui, sans-serif;
+  }
+
+  * {
+    text-transform: lowercase !important;
+  }
+
+  svg text,
+  svg tspan {
+    text-transform: uppercase !important;
+  }
+`
 
 export const ThemedGlobalStyle = createGlobalStyle`
   ${ThemeColorVars}
   ${baseGlobalStyles}
+  ${process.env['REACT_APP_BRAND'] === 'dungfun' ? DUNG_GLOBAL_STYLES : ''}
 
   ::selection {
     background: var(${UI.COLOR_PRIMARY});

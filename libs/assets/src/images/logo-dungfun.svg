@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234 48" fill="none">
+  <circle cx="24" cy="24" r="22" fill="#4a2f18" stroke="#7a5330" stroke-width="2"/>
+  <g stroke="#3a2510" stroke-width="1">
+    <ellipse cx="24" cy="33" rx="13.5" ry="6.5" fill="#8a5c34"/>
+    <ellipse cx="24" cy="26.8" rx="10" ry="5.5" fill="#966840"/>
+    <ellipse cx="24" cy="21.2" rx="7" ry="4.6" fill="#8a5c34"/>
+  </g>
+  <path d="M24 17.4c0-2.8 2.4-3.8 4.4-3s2.3 2.6 1.2 4" fill="none" stroke="#8a5c34" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M24 17.4c0-2.8 2.4-3.8 4.4-3s2.3 2.6 1.2 4" fill="none" stroke="#3a2510" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+  <circle cx="21" cy="26.4" r="1.25" fill="#1d1206"/>
+  <circle cx="27" cy="26.4" r="1.25" fill="#1d1206"/>
+  <path d="M21.8 28.6q2.2 1.8 4.4 0" stroke="#1d1206" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+  <text x="56" y="34" font-family="'Comic Neue','Comic Sans MS',Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="2.5" fill="#f6c551">DUNG<tspan fill="#cdb894">.FUN</tspan></text>
+</svg>
+

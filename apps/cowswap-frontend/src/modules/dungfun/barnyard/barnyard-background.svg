@@ -1,0 +1,544 @@
+<svg class="barn-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <style>
+svg.barn-svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .cel-stroke-lg {
+      stroke: #1f140c;
+      stroke-width: 6px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .cel-stroke {
+      stroke: #1f140c;
+      stroke-width: 4px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .cel-stroke-sm {
+      stroke: #1f140c;
+      stroke-width: 2.5px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @keyframes cow-chew {
+      0%, 100% { transform: rotate(0deg) translate(0, 0); }
+      25% { transform: rotate(3deg) translate(2px, 1px); }
+      50% { transform: rotate(0deg) translate(0, 2px); }
+      75% { transform: rotate(-3deg) translate(-2px, 1px); }
+    }
+    .anim-chew {
+      transform-origin: 265px 430px;
+      animation: cow-chew 2.6s ease-in-out infinite;
+    }
+    @keyframes cow-chew-alt {
+      0%, 100% { transform: rotate(0deg) translate(0, 0); }
+      30% { transform: rotate(-3.5deg) translate(-2px, 1px); }
+      60% { transform: rotate(2deg) translate(1px, 2px); }
+    }
+    .anim-chew-alt {
+      transform-origin: 510px 480px;
+      animation: cow-chew-alt 2.2s ease-in-out infinite;
+    }
+    @keyframes ear-twitch-l {
+      0%, 90%, 100% { transform: rotate(0deg); }
+      93% { transform: rotate(-16deg); }
+      96% { transform: rotate(10deg); }
+    }
+    .anim-ear-l {
+      transform-origin: 190px 380px;
+      animation: ear-twitch-l 4.2s ease-in-out infinite;
+    }
+    @keyframes ear-twitch-r {
+      0%, 88%, 100% { transform: rotate(0deg); }
+      91% { transform: rotate(14deg); }
+      95% { transform: rotate(-8deg); }
+    }
+    .anim-ear-r {
+      transform-origin: 340px 380px;
+      animation: ear-twitch-r 5.1s ease-in-out infinite 0.6s;
+    }
+    @keyframes cow-blink {
+      0%, 95%, 100% { transform: scaleY(1); }
+      97.5% { transform: scaleY(0.08); }
+    }
+    .anim-blink {
+      transform-origin: center;
+      animation: cow-blink 4.4s infinite;
+    }
+    .anim-blink-alt {
+      transform-origin: center;
+      animation: cow-blink 3.6s infinite 1.2s;
+    }
+    @keyframes pig-snout-snuffle {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.06) translateY(-2px); }
+    }
+    .anim-snout {
+      transform-origin: 1578px 785px;
+      animation: pig-snout-snuffle 1.4s ease-in-out infinite;
+    }
+    @keyframes tail-wag {
+      0%, 100% { transform: rotate(0deg); }
+      20% { transform: rotate(15deg); }
+      40% { transform: rotate(-12deg); }
+      60% { transform: rotate(10deg); }
+      80% { transform: rotate(-6deg); }
+    }
+    .anim-tail {
+      transform-origin: 1765px 780px;
+      animation: tail-wag 1.8s ease-in-out infinite;
+    }
+    @keyframes steam-drift {
+      0% { opacity: 0; transform: translateY(0) scale(0.7); }
+      40% { opacity: 0.6; }
+      100% { opacity: 0; transform: translateY(-44px) scale(1.3); }
+    }
+    .anim-steam-1 { animation: steam-drift 3s ease-out infinite; }
+    .anim-steam-2 { animation: steam-drift 3.4s ease-out infinite 1.1s; }
+    .anim-steam-3 { animation: steam-drift 2.7s ease-out infinite 0.5s; }
+    @keyframes fly-loop-a {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(7px, -9px); }
+      50% { transform: translate(-6px, -15px); }
+      75% { transform: translate(9px, -5px); }
+      100% { transform: translate(0, 0); }
+    }
+    @keyframes fly-loop-b {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-10px, 5px); }
+      50% { transform: translate(8px, -10px); }
+      80% { transform: translate(-5px, -16px); }
+      100% { transform: translate(0, 0); }
+    }
+    .anim-fly-a { animation: fly-loop-a 0.75s steps(4, jump-none) infinite; }
+    .anim-fly-b { animation: fly-loop-b 0.9s steps(4, jump-none) infinite 0.25s; }
+    @keyframes lantern-drift {
+      0%, 100% { transform: rotate(-2.8deg); }
+      50% { transform: rotate(2.8deg); }
+    }
+    .anim-lantern {
+      transform-origin: 960px 96px;
+      animation: lantern-drift 4.2s ease-in-out infinite;
+    }
+    @keyframes mote-float {
+      0% { opacity: 0; transform: translateY(0) translateX(0); }
+      50% { opacity: 0.7; transform: translateY(-35px) translateX(15px); }
+      100% { opacity: 0; transform: translateY(-70px) translateX(-10px); }
+    }
+    .anim-mote-1 { animation: mote-float 6s ease-in-out infinite; }
+    .anim-mote-2 { animation: mote-float 7.5s ease-in-out infinite 2s; }
+    .anim-mote-3 { animation: mote-float 5.2s ease-in-out infinite 3.5s; }
+  </style>
+      <defs>
+        <!-- Grimy barn wall pattern -->
+        <pattern id="woodPlankPattern" width="120" height="1080" patternUnits="userSpaceOnUse">
+          <rect width="116" height="1080" fill="#4a3122"/>
+          <rect x="116" width="4" height="1080" fill="#29180f"/>
+          <!-- Knots and grain lines -->
+          <ellipse cx="60" cy="180" rx="9" ry="14" fill="#382216" stroke="#25160e" stroke-width="2"/>
+          <ellipse cx="70" cy="620" rx="12" ry="7" fill="#382216" stroke="#25160e" stroke-width="2"/>
+          <path d="M20 340 Q50 360 30 410" stroke="#352015" stroke-width="3" fill="none"/>
+          <path d="M85 780 Q95 820 75 870" stroke="#352015" stroke-width="3" fill="none"/>
+        </pattern>
+
+        <!-- Golden hay gradient -->
+        <linearGradient id="hayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#fedb55"/>
+          <stop offset="70%" stop-color="#dfa82c"/>
+          <stop offset="100%" stop-color="#b87f1b"/>
+        </linearGradient>
+
+        <!-- Manure heap gradient -->
+        <linearGradient id="dungGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#6e4720"/>
+          <stop offset="60%" stop-color="#492c13"/>
+          <stop offset="100%" stop-color="#2a1608"/>
+        </linearGradient>
+
+        <!-- Pigsty mud gradient -->
+        <linearGradient id="mudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#553822"/>
+          <stop offset="100%" stop-color="#3b2314"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ================= 1. REAR WALL, FLOOR & WINDOW ================= -->
+      <!-- Vertical Wood Plank Wall -->
+      <rect x="0" y="0" width="1920" height="1080" fill="url(#woodPlankPattern)"/>
+
+      <!-- Grimy ceiling shadow -->
+      <rect x="0" y="0" width="1920" height="340" fill="#1b0f07" opacity="0.65"/>
+
+      <!-- Barn Floor base -->
+      <rect x="0" y="740" width="1920" height="340" fill="#321e12"/>
+      <line x1="0" y1="740" x2="1920" y2="740" stroke="#180e07" stroke-width="8"/>
+
+      <!-- Heavy dirt & manure floor buildup -->
+      <ellipse cx="400" cy="880" rx="360" ry="120" fill="#24140a" opacity="0.85"/>
+      <ellipse cx="1450" cy="890" rx="420" ry="130" fill="#24140a" opacity="0.85"/>
+      <ellipse cx="980" cy="920" rx="550" ry="110" fill="#201108" opacity="0.95"/>
+
+      <!-- Dusty Window with Sunbeams -->
+      <g opacity="0.85">
+        <rect x="830" y="110" width="260" height="170" rx="8" fill="#587d89" stroke="#1a0f08" stroke-width="7"/>
+        <line x1="960" y1="110" x2="960" y2="280" stroke="#1a0f08" stroke-width="7"/>
+        <line x1="830" y1="195" x2="1090" y2="195" stroke="#1a0f08" stroke-width="7"/>
+        <!-- Golden dust beam -->
+        <polygon points="830,110 1090,110 1490,830 610,830" fill="#fef3c7" opacity="0.08"/>
+        <!-- Dusty cobweb in corner -->
+        <path d="M834 114 Q870 120 890 114 M834 140 Q860 145 880 125 M834 165 Q850 155 860 140" stroke="#d5c8be" stroke-width="2" fill="none" opacity="0.4"/>
+      </g>
+
+      <!-- ================= 2. TIMBER RAFTERS & LANTERN ================= -->
+      <!-- Top Crossbeam -->
+      <rect x="-10" y="70" width="1940" height="54" fill="#5a3821" class="cel-stroke-lg"/>
+      <rect x="0" y="104" width="1920" height="14" fill="#382012"/>
+
+      <!-- Angled Rafter Trusses -->
+      <line x1="0" y1="80" x2="420" y2="340" stroke="#482b1a" stroke-width="32" stroke-linecap="square"/>
+      <line x1="0" y1="80" x2="420" y2="340" class="cel-stroke" stroke-width="4" fill="none"/>
+      
+      <line x1="1920" y1="80" x2="1500" y2="340" stroke="#482b1a" stroke-width="32" stroke-linecap="square"/>
+      <line x1="1920" y1="80" x2="1500" y2="340" class="cel-stroke" stroke-width="4" fill="none"/>
+
+      <!-- Cobwebs -->
+      <g stroke="#dfd4c5" stroke-width="2.5" fill="none" opacity="0.45">
+        <path d="M0 70 L90 70 M0 110 L80 70 M0 150 L60 70 M0 200 L40 70"/>
+        <path d="M15 100 Q40 85 65 72 M25 140 Q60 115 78 80 M35 180 Q80 145 92 85"/>
+        <path d="M1920 70 L1830 70 M1920 110 L1840 70 M1920 150 L1860 70"/>
+        <path d="M1905 100 Q1880 85 1855 72 M1895 140 Q1860 115 1842 80"/>
+      </g>
+
+      <!-- Gentle Swaying Rafter Lantern -->
+      <g class="anim-lantern">
+        <line x1="960" y1="96" x2="960" y2="240" stroke="#25160e" stroke-width="4"/>
+        <path d="M935 240 L985 240 L975 225 L945 225 Z" fill="#2b1c14" class="cel-stroke-sm"/>
+        <rect x="940" y="240" width="40" height="52" rx="4" fill="#ffdf79" class="cel-stroke-sm"/>
+        <ellipse cx="960" cy="268" rx="9" ry="14" fill="#ff8c2b"/>
+        <line x1="953" y1="240" x2="953" y2="292" stroke="#2b1c14" stroke-width="2"/>
+        <line x1="967" y1="240" x2="967" y2="292" stroke="#2b1c14" stroke-width="2"/>
+        <rect x="933" y="292" width="54" height="14" rx="3" fill="#2b1c14" class="cel-stroke-sm"/>
+        <circle cx="960" cy="268" r="90" fill="#ffd866" opacity="0.12"/>
+      </g>
+
+      <!-- Vertical Support Pillars -->
+      <rect x="420" y="70" width="48" height="740" fill="#583620" class="cel-stroke"/>
+      <rect x="424" y="70" width="8" height="740" fill="#754a2e"/>
+      <rect x="1450" y="70" width="48" height="740" fill="#583620" class="cel-stroke"/>
+      <rect x="1454" y="70" width="8" height="740" fill="#754a2e"/>
+
+      <!-- ================= 3. COW PENS (LEFT) ================= -->
+      <!-- Back fence rails -->
+      <rect x="60" y="560" width="370" height="22" fill="#784a29" class="cel-stroke"/>
+      <rect x="60" y="640" width="370" height="22" fill="#784a29" class="cel-stroke"/>
+      <rect x="60" y="720" width="370" height="24" fill="#653d20" class="cel-stroke"/>
+
+      <!-- COW #1 (CowSwap style spotted black & white cow) -->
+      <g id="cowBessie">
+        <!-- Body torso -->
+        <path d="M120 740 C110 590 190 510 320 520 C390 525 430 580 440 730 Z" fill="#fdfbf7" class="cel-stroke-lg"/>
+        <!-- Cel-shaded organic hide spots -->
+        <path d="M150 630 C170 570 240 550 250 620 C255 660 210 690 170 680 Z" fill="#201813"/>
+        <path d="M330 540 C370 545 420 570 410 640 C370 630 350 590 330 540 Z" fill="#201813"/>
+        <path d="M290 690 C320 670 370 710 350 740 L270 740 Z" fill="#201813"/>
+
+        <!-- Neck Collar & Cow Bell -->
+        <rect x="235" y="515" width="60" height="20" rx="6" fill="#a42828" class="cel-stroke-sm" transform="rotate(-6 265 525)"/>
+        <path d="M255 532 L275 532 L280 555 L250 555 Z" fill="#f7b731" class="cel-stroke-sm"/>
+        <circle cx="265" cy="557" r="4" fill="#b07d10"/>
+
+        <!-- Animated Cud-Chewing Head -->
+        <g class="anim-chew">
+          <!-- Horns -->
+          <path d="M195 365 C175 330 185 295 210 295 C215 315 215 345 220 370 Z" fill="#e8cca4" class="cel-stroke-sm"/>
+          <path d="M335 365 C355 330 345 295 320 295 C315 315 315 345 310 370 Z" fill="#e8cca4" class="cel-stroke-sm"/>
+
+          <!-- Left Ear with tag -->
+          <g class="anim-ear-l">
+            <ellipse cx="170" cy="380" rx="36" ry="18" fill="#fdfbf7" class="cel-stroke-sm" transform="rotate(-22 170 380)"/>
+            <ellipse cx="170" cy="380" rx="22" ry="9" fill="#fca5a5" transform="rotate(-22 170 380)"/>
+            <polygon points="145,390 135,410 152,414 156,394" fill="#fed330" stroke="#1f140c" stroke-width="2"/>
+            <text x="140" y="408" font-size="9" font-family="sans-serif" font-weight="bold" fill="#1f140c">69</text>
+          </g>
+
+          <!-- Right Ear -->
+          <g class="anim-ear-r">
+            <ellipse cx="360" cy="380" rx="36" ry="18" fill="#fdfbf7" class="cel-stroke-sm" transform="rotate(22 360 380)"/>
+            <ellipse cx="360" cy="380" rx="22" ry="9" fill="#fca5a5" transform="rotate(22 360 380)"/>
+          </g>
+
+          <!-- Head Shape -->
+          <ellipse cx="265" cy="400" rx="72" ry="62" fill="#fdfbf7" class="cel-stroke-lg"/>
+          <!-- Spot over left eye -->
+          <path d="M200 370 C220 350 260 355 265 400 C270 435 230 445 200 425 Z" fill="#201813"/>
+
+          <!-- Blinking Cow Eyes -->
+          <g class="anim-blink">
+            <circle cx="230" cy="395" r="16" fill="#ffffff" class="cel-stroke-sm"/>
+            <circle cx="233" cy="395" r="8" fill="#1f140c"/>
+            <circle cx="235" cy="391" r="3" fill="#ffffff"/>
+
+            <circle cx="295" cy="395" r="16" fill="#ffffff" class="cel-stroke-sm"/>
+            <circle cx="292" cy="395" r="8" fill="#1f140c"/>
+            <circle cx="294" cy="391" r="3" fill="#ffffff"/>
+          </g>
+          <path d="M218 372 Q232 365 244 372" stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <path d="M280 372 Q294 365 306 372" stroke="#1f140c" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+          <!-- Pink Cow Snout -->
+          <ellipse cx="265" cy="460" rx="64" ry="40" fill="#fca5a5" class="cel-stroke-lg"/>
+          <ellipse cx="240" cy="460" rx="10" ry="14" fill="#a83f3f" class="cel-stroke-sm"/>
+          <ellipse cx="290" cy="460" rx="10" ry="14" fill="#a83f3f" class="cel-stroke-sm"/>
+
+          <!-- Straw Stalk in mouth -->
+          <path d="M275 480 Q320 495 350 475 L360 470" stroke="#f1c40f" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <polygon points="350,470 365,465 360,478" fill="#27ae60"/>
+        </g>
+      </g>
+
+      <!-- COW #2 (Brown Jersey Cow peeking over divider) -->
+      <g id="cowButtercup">
+        <g class="anim-chew-alt">
+          <ellipse cx="510" cy="460" rx="52" ry="46" fill="#c48243" class="cel-stroke"/>
+          <ellipse cx="445" cy="440" rx="26" ry="14" fill="#c48243" class="cel-stroke-sm" transform="rotate(-25 445 440)"/>
+          <ellipse cx="575" cy="440" rx="26" ry="14" fill="#c48243" class="cel-stroke-sm" transform="rotate(25 575 440)"/>
+          <polygon points="510,430 516,444 530,444 518,453 523,466 510,457 497,466 502,453 490,444 504,444" fill="#fdfbf7"/>
+          <ellipse cx="510" cy="495" rx="44" ry="28" fill="#e8a888" class="cel-stroke"/>
+          <circle cx="495" cy="495" r="6" fill="#4d2712"/>
+          <circle cx="525" cy="495" r="6" fill="#4d2712"/>
+          <g class="anim-blink-alt">
+            <circle cx="488" cy="455" r="11" fill="#fff" class="cel-stroke-sm"/>
+            <circle cx="488" cy="455" r="6" fill="#1a0f08"/>
+            <circle cx="532" cy="455" r="11" fill="#fff" class="cel-stroke-sm"/>
+            <circle cx="532" cy="455" r="6" fill="#1a0f08"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- Foreground Pen Planks & Gate -->
+      <g>
+        <rect x="50" y="520" width="30" height="280" fill="#7a4726" class="cel-stroke"/>
+        <rect x="230" y="540" width="26" height="260" fill="#7a4726" class="cel-stroke"/>
+        <rect x="420" y="520" width="30" height="280" fill="#7a4726" class="cel-stroke"/>
+        <rect x="30" y="650" width="410" height="48" rx="6" fill="#935b35" class="cel-stroke-lg"/>
+        <!-- Manure splashes on wood -->
+        <path d="M120 675 Q135 660 150 672 Q160 690 140 692 Q125 690 120 675 Z" fill="#3b2310"/>
+        <circle cx="162" cy="686" r="4" fill="#3b2310"/>
+        <path d="M310 660 Q330 655 340 670 Q335 685 315 680 Z" fill="#3b2310"/>
+        <rect x="30" y="730" width="410" height="52" rx="6" fill="#84502d" class="cel-stroke-lg"/>
+      </g>
+
+      <!-- ================= 4. PIGSTY & MUD PIT (RIGHT) ================= -->
+      <!-- Muddy pit base -->
+      <path d="M1420 740 Q1650 720 1890 750 L1910 930 Q1680 970 1400 920 Z" fill="url(#mudGrad)" class="cel-stroke-lg"/>
+      <ellipse cx="1650" cy="840" rx="210" ry="70" fill="#3d2414" class="cel-stroke-sm"/>
+      <ellipse cx="1720" cy="855" rx="140" ry="42" fill="#29160a"/>
+
+      <!-- Mud bubbles -->
+      <circle cx="1620" cy="820" r="12" fill="#5a371e" stroke="#1f140c" stroke-width="3"/>
+      <circle cx="1623" cy="817" r="4" fill="#774d2e"/>
+      <circle cx="1780" cy="830" r="9" fill="#5a371e" stroke="#1f140c" stroke-width="2.5"/>
+
+      <!-- PIG #1 (Submerged in mud) -->
+      <g id="pigWallow">
+        <ellipse cx="1670" cy="800" rx="95" ry="68" fill="#ffa8b8" class="cel-stroke-lg"/>
+        <!-- Mud blotches on pig -->
+        <path d="M1620 770 Q1645 745 1670 765 Q1680 790 1650 795 Z" fill="#4d2d17"/>
+        <circle cx="1710" cy="780" r="14" fill="#4d2d17"/>
+        <circle cx="1730" cy="795" r="7" fill="#4d2d17"/>
+
+        <!-- Curly Wagging Tail -->
+        <g class="anim-tail">
+          <path d="M1765 780 Q1790 770 1795 750 Q1800 735 1785 738 Q1770 745 1785 760 Q1805 770 1815 755" fill="none" stroke="#ffa8b8" stroke-width="8" stroke-linecap="round"/>
+          <path d="M1765 780 Q1790 770 1795 750 Q1800 735 1785 738 Q1770 745 1785 760 Q1805 770 1815 755" fill="none" stroke="#1f140c" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <!-- Pig Head -->
+        <ellipse cx="1580" cy="770" rx="55" ry="48" fill="#ffb4c2" class="cel-stroke-lg"/>
+        <polygon points="1540,735 1515,695 1555,710" fill="#f48ca0" class="cel-stroke"/>
+        <polygon points="1605,730 1625,690 1590,708" fill="#f48ca0" class="cel-stroke"/>
+
+        <!-- Content/Smiling Eyes -->
+        <path d="M1542 755 Q1554 745 1566 755" stroke="#1f140c" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <path d="M1595 755 Q1607 745 1619 755" stroke="#1f140c" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <circle cx="1538" cy="772" r="10" fill="#ff7690" opacity="0.6"/>
+        <circle cx="1624" cy="772" r="10" fill="#ff7690" opacity="0.6"/>
+
+        <!-- Snuffling Snout -->
+        <g class="anim-snout">
+          <ellipse cx="1578" cy="785" rx="30" ry="22" fill="#ff8da3" class="cel-stroke"/>
+          <ellipse cx="1568" cy="785" rx="6" ry="8" fill="#752336"/>
+          <ellipse cx="1588" cy="785" rx="6" ry="8" fill="#752336"/>
+        </g>
+      </g>
+
+      <!-- PIG #2 (Curious Piglet resting hooves on rail) -->
+      <g id="piglet" transform="translate(1420, 620)">
+        <ellipse cx="60" cy="60" rx="38" ry="34" fill="#ffaec0" class="cel-stroke"/>
+        <polygon points="35,40 15,15 45,28" fill="#f48ca0" class="cel-stroke-sm"/>
+        <polygon points="80,38 100,15 75,28" fill="#f48ca0" class="cel-stroke-sm"/>
+        <circle cx="46" cy="52" r="9" fill="#fff" class="cel-stroke-sm"/>
+        <circle cx="47" cy="52" r="5" fill="#1f140c"/>
+        <circle cx="74" cy="52" r="9" fill="#fff" class="cel-stroke-sm"/>
+        <circle cx="73" cy="52" r="5" fill="#1f140c"/>
+        <ellipse cx="60" cy="72" rx="20" ry="14" fill="#ff7f99" class="cel-stroke-sm"/>
+        <circle cx="54" cy="72" r="3.5" fill="#691a2b"/>
+        <circle cx="66" cy="72" r="3.5" fill="#691a2b"/>
+        <!-- Hooves -->
+        <ellipse cx="38" cy="95" rx="10" ry="12" fill="#ffaec0" class="cel-stroke-sm"/>
+        <line x1="38" y1="92" x2="38" y2="105" stroke="#1f140c" stroke-width="3"/>
+        <ellipse cx="82" cy="95" rx="10" ry="12" fill="#ffaec0" class="cel-stroke-sm"/>
+        <line x1="82" y1="92" x2="82" y2="105" stroke="#1f140c" stroke-width="3"/>
+      </g>
+
+      <!-- Pigsty Wooden Rails -->
+      <g>
+        <rect x="1460" y="580" width="30" height="230" fill="#6f4225" class="cel-stroke"/>
+        <rect x="1680" y="600" width="28" height="210" fill="#6f4225" class="cel-stroke"/>
+        <rect x="1870" y="580" width="30" height="230" fill="#6f4225" class="cel-stroke"/>
+        <line x1="1440" y1="670" x2="1920" y2="670" stroke="#87532f" stroke-width="26" stroke-linecap="round"/>
+        <line x1="1440" y1="670" x2="1920" y2="670" class="cel-stroke-lg" fill="none"/>
+        <line x1="1440" y1="735" x2="1920" y2="735" stroke="#794827" stroke-width="28" stroke-linecap="round"/>
+        <line x1="1440" y1="735" x2="1920" y2="735" class="cel-stroke-lg" fill="none"/>
+      </g>
+
+      <!-- ================= 5. HAY BALES & SCATTERED STRAW ================= -->
+      <g id="hayStack">
+        <!-- Bale 1 -->
+        <polygon points="560,780 720,780 690,710 530,710" fill="url(#hayGrad)" class="cel-stroke"/>
+        <rect x="560" y="780" width="160" height="60" fill="#c99220" class="cel-stroke"/>
+        <line x1="600" y1="710" x2="630" y2="840" stroke="#8e5d0f" stroke-width="5" stroke-dasharray="8 4"/>
+        <line x1="660" y1="710" x2="690" y2="840" stroke="#8e5d0f" stroke-width="5" stroke-dasharray="8 4"/>
+
+        <!-- Bale 2 -->
+        <polygon points="720,790 870,790 840,725 690,725" fill="url(#hayGrad)" class="cel-stroke"/>
+        <rect x="720" y="790" width="150" height="60" fill="#c99220" class="cel-stroke"/>
+        <line x1="760" y1="725" x2="790" y2="850" stroke="#8e5d0f" stroke-width="5" stroke-dasharray="8 4"/>
+
+        <!-- Bale 3 (Top) -->
+        <polygon points="630,715 780,715 750,655 600,655" fill="url(#hayGrad)" class="cel-stroke"/>
+        <rect x="630" y="715" width="150" height="58" fill="#dca326" class="cel-stroke"/>
+        <line x1="675" y1="655" x2="705" y2="773" stroke="#8e5d0f" stroke-width="5" stroke-dasharray="8 4"/>
+      </g>
+
+      <!-- Straw needles on the ground -->
+      <g stroke="#ffd447" stroke-width="4" stroke-linecap="round" fill="none">
+        <line x1="480" y1="840" x2="520" y2="855"/>
+        <line x1="490" y1="860" x2="535" y2="845"/>
+        <line x1="510" y1="835" x2="540" y2="870"/>
+        <line x1="750" y1="870" x2="795" y2="880"/>
+        <line x1="765" y1="890" x2="800" y2="865"/>
+        <line x1="1280" y1="850" x2="1320" y2="860"/>
+        <line x1="1300" y1="875" x2="1340" y2="850"/>
+        <line x1="1310" y1="840" x2="1335" y2="880"/>
+        <line x1="910" y1="910" x2="950" y2="925"/>
+        <line x1="930" y1="935" x2="975" y2="910"/>
+      </g>
+
+      <!-- ================= 6. STEAMING MANURE HEAPS & FLIES ================= -->
+      <!-- Center Steaming Dung Pile -->
+      <g id="centerDung">
+        <ellipse cx="1080" cy="870" rx="140" ry="40" fill="#1b0e06"/>
+        <path d="M960 870 C960 820 1020 810 1080 810 C1140 810 1200 820 1200 870 C1200 895 960 895 960 870 Z" fill="url(#dungGrad)" class="cel-stroke-lg"/>
+        <path d="M995 825 C995 780 1040 765 1080 765 C1125 765 1165 780 1165 825 Z" fill="url(#dungGrad)" class="cel-stroke-lg"/>
+        <path d="M1035 775 C1035 730 1070 710 1090 710 C1110 710 1125 730 1120 745 C1115 760 1090 760 1080 775 Z" fill="url(#dungGrad)" class="cel-stroke-lg"/>
+        <!-- Undigested corn / straw bits -->
+        <circle cx="1040" cy="840" r="5" fill="#f1c40f" stroke="#1f140c" stroke-width="2"/>
+        <circle cx="1115" cy="830" r="4.5" fill="#f1c40f" stroke="#1f140c" stroke-width="2"/>
+        <circle cx="1075" cy="790" r="4" fill="#f1c40f" stroke="#1f140c" stroke-width="2"/>
+
+        <!-- Steam Wisps Rising -->
+        <g stroke="#a38260" stroke-width="4.5" fill="none" stroke-linecap="round">
+          <path d="M1050 710 Q1040 680 1055 650 Q1070 620 1050 590" class="anim-steam-1"/>
+          <path d="M1085 700 Q1095 670 1080 640 Q1065 610 1085 580" class="anim-steam-2"/>
+          <path d="M1115 715 Q1125 685 1110 655 Q1095 625 1115 600" class="anim-steam-3"/>
+        </g>
+      </g>
+
+      <!-- Cow Pen Dung Pat -->
+      <g id="penDung">
+        <ellipse cx="490" cy="900" rx="45" ry="18" fill="#1b0e06"/>
+        <ellipse cx="490" cy="890" rx="42" ry="20" fill="url(#dungGrad)" class="cel-stroke"/>
+        <ellipse cx="490" cy="882" rx="26" ry="12" fill="#5a371a" class="cel-stroke-sm"/>
+        <circle cx="482" cy="888" r="3.5" fill="#f1c40f"/>
+        <path d="M490 870 Q482 850 495 830" stroke="#937253" stroke-width="3" fill="none" stroke-linecap="round" class="anim-steam-1"/>
+      </g>
+
+      <!-- Cartoon Buzzing Flies -->
+      <!-- Flies over center dung -->
+      <g transform="translate(1080, 680)">
+        <g class="anim-fly-a">
+          <ellipse cx="-20" cy="-20" rx="3.5" ry="4.5" fill="#111"/>
+          <ellipse cx="-24" cy="-23" rx="4" ry="2" fill="#e0f7fa" opacity="0.8"/>
+          <ellipse cx="-16" cy="-23" rx="4" ry="2" fill="#e0f7fa" opacity="0.8"/>
+        </g>
+        <g class="anim-fly-b">
+          <ellipse cx="25" cy="-35" rx="3.5" ry="4.5" fill="#111"/>
+          <ellipse cx="21" cy="-38" rx="4" ry="2" fill="#e0f7fa" opacity="0.8"/>
+          <ellipse cx="29" cy="-38" rx="4" ry="2" fill="#e0f7fa" opacity="0.8"/>
+        </g>
+        <g class="anim-fly-a" style="animation-delay: 0.4s;">
+          <ellipse cx="8" cy="-55" rx="3" ry="4" fill="#111"/>
+          <ellipse cx="4" cy="-58" rx="3.5" ry="2" fill="#e0f7fa" opacity="0.8"/>
+          <ellipse cx="12" cy="-58" rx="3.5" ry="2" fill="#e0f7fa" opacity="0.8"/>
+        </g>
+      </g>
+
+      <!-- Flies over pen dung -->
+      <g transform="translate(480, 840)">
+        <g class="anim-fly-b">
+          <ellipse cx="0" cy="0" rx="3.5" ry="4.5" fill="#111"/>
+          <ellipse cx="-4" cy="-3" rx="3.5" ry="2" fill="#e0f7fa" opacity="0.8"/>
+        </g>
+        <g class="anim-fly-a" style="animation-delay: 0.3s;">
+          <ellipse cx="16" cy="-14" rx="3.5" ry="4.5" fill="#111"/>
+          <ellipse cx="12" cy="-17" rx="3.5" ry="2" fill="#e0f7fa" opacity="0.8"/>
+        </g>
+      </g>
+
+      <!-- ================= 7. BARN TOOLS & SLOP BUCKET ================= -->
+      <!-- Manure Shovel -->
+      <g id="shovel">
+        <line x1="435" y1="480" x2="400" y2="880" stroke="#b08359" stroke-width="12" stroke-linecap="round"/>
+        <line x1="435" y1="480" x2="400" y2="880" class="cel-stroke" stroke-width="3" fill="none"/>
+        <path d="M430 485 L445 460 C452 450 465 455 460 470 L442 492 Z" fill="#694326" class="cel-stroke-sm"/>
+        <path d="M380 840 L425 845 L415 905 C412 920 375 922 370 905 Z" fill="#718093" class="cel-stroke"/>
+        <path d="M370 890 Q395 880 415 892 L415 905 C412 920 375 922 370 905 Z" fill="#42250d"/>
+      </g>
+
+      <!-- Pitchfork -->
+      <g id="pitchfork">
+        <line x1="1440" y1="460" x2="1480" y2="880" stroke="#b08359" stroke-width="11" stroke-linecap="round"/>
+        <line x1="1440" y1="460" x2="1480" y2="880" class="cel-stroke" stroke-width="3" fill="none"/>
+        <rect x="1470" y="860" width="22" height="18" rx="3" fill="#58677c" class="cel-stroke-sm" transform="rotate(6 1481 869)"/>
+        <g stroke="#718093" stroke-width="5" stroke-linecap="round" fill="none">
+          <path d="M1465 875 Q1460 915 1455 940"/>
+          <path d="M1475 876 Q1473 915 1470 942"/>
+          <path d="M1485 877 Q1486 915 1485 942"/>
+          <path d="M1495 878 Q1500 915 1502 940"/>
+        </g>
+        <path d="M1468 915 Q1485 925 1500 918" stroke="#f1c40f" stroke-width="4" fill="none"/>
+      </g>
+
+      <!-- Overturned Slop Tin Bucket -->
+      <g transform="translate(1360, 880) rotate(-18)">
+        <polygon points="20,10 80,10 70,70 30,70" fill="#8898aa" class="cel-stroke"/>
+        <line x1="23" y1="30" x2="77" y2="30" stroke="#5a6878" stroke-width="3"/>
+        <line x1="27" y1="50" x2="73" y2="50" stroke="#5a6878" stroke-width="3"/>
+        <path d="M15 10 Q50 -20 85 10" stroke="#25160e" stroke-width="4" fill="none"/>
+        <path d="M30 70 Q10 85 -20 80 Q-40 85 -20 95 Q10 100 40 85 Z" fill="#4d2f16" class="cel-stroke-sm"/>
+      </g>
+
+      <!-- ================= 8. FLOATING DUST MOTES ================= -->
+      <g fill="#ffeaa7" opacity="0.65">
+        <circle cx="920" cy="280" r="2.5" class="anim-mote-1"/>
+        <circle cx="980" cy="340" r="3.5" class="anim-mote-2"/>
+        <circle cx="890" cy="420" r="2.2" class="anim-mote-3"/>
+        <circle cx="1040" cy="390" r="3.2" class="anim-mote-1"/>
+        <circle cx="950" cy="510" r="2" class="anim-mote-2"/>
+      </g>
+    </svg>

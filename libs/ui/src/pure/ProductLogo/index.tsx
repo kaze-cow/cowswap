@@ -10,7 +10,9 @@ import svgCowswapChristmasLightSrc from '@cowprotocol/assets/images/logo-cowswap
 import svgCowswapHalloweenSrc from '@cowprotocol/assets/images/logo-cowswap-halloween.svg'
 import svgCowswapSrc from '@cowprotocol/assets/images/logo-cowswap.svg'
 import svgCowwidgetSrc from '@cowprotocol/assets/images/logo-cowwidget.svg'
+import svgDungfunSrc from '@cowprotocol/assets/images/logo-dungfun.svg'
 import iconCowSrc from '@cowprotocol/assets/images/logo-icon-cow.svg'
+import iconDungfunSrc from '@cowprotocol/assets/images/logo-icon-dungfun.svg'
 import iconMevblockerSrc from '@cowprotocol/assets/images/logo-icon-mevblocker.svg'
 import svgMevblockerSrc from '@cowprotocol/assets/images/logo-mevblocker.svg'
 import type { CowProductId } from '@cowprotocol/common-const/cowLinks'
@@ -41,6 +43,7 @@ export enum ProductVariant {
   CowAmm = 'cowAmm',
   CowDao = 'cowDao',
   CowRwa = 'cowRwa',
+  DungFun = 'dungFun',
 }
 
 export const COW_PRODUCT_VARIANTS: Record<CowProductId, ProductVariant> = {
@@ -109,6 +112,42 @@ const LOGOS: Record<ProductVariant, ThemedLogo> = {
         color: '#004293',
         height: '56px',
         heightMobile: '50px',
+        preserveOriginalColors: true,
+      },
+    },
+  },
+
+  // dung.fun
+  [ProductVariant.DungFun]: {
+    light: {
+      default: {
+        src: svgDungfunSrc,
+        alt: 'dung.fun',
+        height: '48px',
+        heightMobile: '40px',
+        preserveOriginalColors: true,
+      },
+      logoIconOnly: {
+        src: iconDungfunSrc,
+        alt: 'dung.fun',
+        height: '44px',
+        heightMobile: '38px',
+        preserveOriginalColors: true,
+      },
+    },
+    dark: {
+      default: {
+        src: svgDungfunSrc,
+        alt: 'dung.fun',
+        height: '48px',
+        heightMobile: '40px',
+        preserveOriginalColors: true,
+      },
+      logoIconOnly: {
+        src: iconDungfunSrc,
+        alt: 'dung.fun',
+        height: '44px',
+        heightMobile: '38px',
         preserveOriginalColors: true,
       },
     },
