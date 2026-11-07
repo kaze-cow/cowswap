@@ -3,7 +3,12 @@ import { ReactNode } from 'react'
 import { isInjectedWidget } from '@cowprotocol/common-utils'
 import { CowLoadingIcon } from '@cowprotocol/ui'
 
+import { DungLoadingIcon } from 'common/brand/dungLoadingIcon'
+
 import * as styledEl from './styled'
+
+// dung.fun icon module is dead-code-eliminated from cowswap builds by the brand define
+const isDungfun = process.env['REACT_APP_BRAND'] === 'dungfun'
 
 export interface CurrencyArrowSeparatorProps {
   isLoading: boolean
@@ -33,7 +38,11 @@ export function CurrencyArrowSeparator({
     >
       <styledEl.LoadingWrapper type="button" $isLoading={isLoading} disabled={disabled} onClick={onSwitchTokens}>
         {!isInjectedWidgetMode && isLoading ? (
-          <CowLoadingIcon size={26} isDarkMode={isDarkMode} />
+          isDungfun ? (
+            <DungLoadingIcon size={26} />
+          ) : (
+            <CowLoadingIcon size={26} isDarkMode={isDarkMode} />
+          )
         ) : (
           <styledEl.ArrowDownIcon disabled={disabled} />
         )}

@@ -60,6 +60,16 @@ function dungfunHtmlPlugin(): Plugin {
           /<meta name="twitter:title" content="[^"]*" \/>/,
           `<meta name="twitter:title" content="${DUNG_TITLE}" />`,
         )
+        .replace(
+          /<meta property="og:image" content="[^"]*" \/>/,
+          `<meta property="og:image" content="/brand/og-meta-dungfun.png" />`,
+        )
+        .replace(
+          /<meta name="twitter:image" content="[^"]*" \/>/,
+          `<meta name="twitter:image" content="/brand/og-meta-dungfun.png" />`,
+        )
+        .replace(/<meta property="og:url"[^>]*>\s*/, '')
+        .replace(/<meta name="twitter:site"[^>]*>\s*/, '')
         .replace(/<link rel="apple-touch-icon"[^>]*>/, '<link rel="apple-touch-icon" href="/brand/favicon.svg" />')
         .replace(/<link rel="icon"[^>]*>\s*/g, '<link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />\n  ')
         .replace(/<link rel="manifest"[^>]*>\s*/, '')

@@ -23,8 +23,12 @@ const chainNameToIdMap: { [key: string]: SupportedChainId } = {
   solana: SupportedChainId.SOLANA,
 }
 
+// Inline comparison so the Solana branch is dead-code-eliminated from non-dungfun builds
+const FALLBACK_CHAIN_ID =
+  process.env['REACT_APP_BRAND'] === 'dungfun' ? SupportedChainId.SOLANA : SupportedChainId.MAINNET
+
 export function getCurrentChainIdFromUrl(location = window.location): SupportedChainId {
-  return getRawCurrentChainIdFromUrl(location) || SupportedChainId.MAINNET
+  return getRawCurrentChainIdFromUrl(location) || FALLBACK_CHAIN_ID
 }
 
 // Trying to get chainId from URL (#/100/swap)

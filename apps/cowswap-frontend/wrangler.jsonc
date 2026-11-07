@@ -6,6 +6,6 @@
         "enabled": true
     },
     "assets": {
-        "directory": "../../build/cowswap"
+        "directory": "../../build/dung-fun/"
     }
 }
